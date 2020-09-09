@@ -30,12 +30,18 @@ class AddDataActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // TODO(inisialisasi binding untuk activity_add_data.xml)
+        val inflater = layoutInflater
+        binding = ActivityAddDataBinding.inflate(inflater)
+        setContentView(binding.root)
+
         databaseRef = FirebaseDatabase.getInstance().reference
 
         firebaseStorage = FirebaseStorage.getInstance().reference.child("Profile Photo")
 
         userData = intent.getParcelableExtra("DATA")
 
+        // TODO(Jika userData ada maka buat dataUser berisi userData tsb)
         userData?.let { dataUser ->
             binding.run {
                 btnDelete.visibility = View.VISIBLE
@@ -51,10 +57,14 @@ class AddDataActivity : AppCompatActivity() {
 
                 // setonclick untuk button delete
                 btnDelete.setOnClickListener {
+                    // TODO(Jalankan Fungsi deleteData berisi dataUser)
+                    deleteData(dataUser)
                 }
 
                 // setonclick untuk button pilih gambar
                 binding.btnChoosePhoto.setOnClickListener {
+                    // TODO(Jalankan CropImage untuk memilih gambar pada galeri dan crop
+                    CropImage.activity().start(this@AddDataActivity)
                 }
             }
         }
@@ -67,36 +77,45 @@ class AddDataActivity : AppCompatActivity() {
                 val alamatUser = edtAddress.text.toString()
 
                 // TODO("Buat fungsi untuk mengecek agar kolom edittext diisi semua")
+                val peringatan = when {
+                    namaUser.isBlank() -> "Nama User Tidak Boleh Kosong !"
+                    kelasUser.isBlank() -> "Kelas User Tidak Boleh Kosong !"
+                    alamatUser.isBlank() -> "Alamat User Tidak Boleh Kosong !"
+                    else -> ""
+                }
 
-
-                val dataUser = ModelData(
-                    userData?.profile_image ?: "",
-                    namaUser,
-                    kelasUser,
-                    alamatUser
-                )
+                // TODO(Jika Peringatan Kosong maka simpan User, selainnya tampilkan peringatan apapun)
+                if (peringatan.isBlank()) {
+                    val dataUser = ModelData(
+                        userData?.profile_image ?: "",
+                        namaUser,
+                        kelasUser,
+                        alamatUser
+                    )
+                    saveData(dataUser)
+                } else {
+                    Toast.makeText(this@AddDataActivity, peringatan, Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
         // setonclick button cancel
         binding.btnCancel.setOnClickListener {
+            // TODO(Tambahkan fungsi untuk mengakhiri activity saat ini dan kembali ke activity sebelumnya)
+            finish()
         }
     }
 
     private fun saveData(userData: ModelData) {
-        val dataSave = HashMap<String, String>()
-        dataSave["profile_image"] = userData.profile_image
-        dataSave["profile_name"] = userData.profile_name
-        dataSave["profile_class"] = userData.profile_class
-        dataSave["profile_address"] = userData.profile_address
-
         val userDB = databaseRef.child("Users")
             .child(userData.profile_name)
-            .setValue(dataSave)
+            .setValue(userData)
 
         userDB.addOnCompleteListener {
             if (it.isSuccessful) {
                 Toast.makeText(this, "User Telah Diperbarui", Toast.LENGTH_SHORT).show()
+                // TODO(Tambahkan fungsi untuk mengakhiri activity saat ini dan kembali ke activity sebelumnya)
+                finish()
             }
         }
     }
@@ -108,6 +127,8 @@ class AddDataActivity : AppCompatActivity() {
         userDB.addOnCompleteListener {
             if (it.isSuccessful) {
                 Toast.makeText(this, "User Telah Dihapus", Toast.LENGTH_SHORT).show()
+                // TODO(Tambahkan fungsi untuk mengakhiri activity saat ini dan kembali ke activity sebelumnya)
+                finish()
             }
         }
     }
@@ -125,7 +146,7 @@ class AddDataActivity : AppCompatActivity() {
             // https://firebase.google.com/docs/storage/android/upload-files?hl=id#get_a_download_url
             uploadImage.continueWithTask { task ->
                 if (!task.isSuccessful) {
-                    task.exception?.let {error ->
+                    task.exception?.let { error ->
                         Log.e("Gagal Upload", error.localizedMessage.toString())
                     }
                 }

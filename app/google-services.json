@@ -1,42 +1,42 @@
 {
   "project_info": {
-    "project_number": "245181828806",
-    "firebase_url": "https://todo-app-gambar.firebaseio.com",
-    "project_id": "todo-app-gambar",
-    "storage_bucket": "todo-app-gambar.appspot.com"
+    "project_number": "902578873801",
+    "firebase_url": "https://todo-app-plus-gambar.firebaseio.com",
+    "project_id": "todo-app-plus-gambar",
+    "storage_bucket": "todo-app-plus-gambar.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:245181828806:android:c2ee76126e5d0ca78751c7",
+        "mobilesdk_app_id": "1:902578873801:android:a45a80bf647a39cba2f418",
         "android_client_info": {
-          "package_name": "idn.fahru.aplikasitodogambar"
+          "package_name": "idn.firebase.fahru.todo"
         }
       },
       "oauth_client": [
         {
-          "client_id": "245181828806-i6ogan3iju95t6mkcoemr9b794d85iag.apps.googleusercontent.com",
+          "client_id": "902578873801-tmhlkimff2q8vcti9h6cajbld0u58ho0.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "idn.fahru.aplikasitodogambar",
+            "package_name": "idn.firebase.fahru.todo",
             "certificate_hash": "41edd1c23cfa0d015daa0bac858796d0a90e2958"
           }
         },
         {
-          "client_id": "245181828806-lfsangn5ujrpdm2ek8oah96r9jevmjd4.apps.googleusercontent.com",
+          "client_id": "902578873801-1hn64e69o6uv7h7afbvfgsdsudqtvdn9.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAUcw5odjOUiFiGpVUl7y9uCdApYNKKl-8"
+          "current_key": "AIzaSyAMadWusqdd_glxCELLCCOqFRX7mCVZXpk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "245181828806-lfsangn5ujrpdm2ek8oah96r9jevmjd4.apps.googleusercontent.com",
+              "client_id": "902578873801-1hn64e69o6uv7h7afbvfgsdsudqtvdn9.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

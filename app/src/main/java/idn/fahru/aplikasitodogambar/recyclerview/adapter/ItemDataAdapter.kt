@@ -1,8 +1,10 @@
 package idn.fahru.aplikasitodogambar.recyclerview.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import idn.fahru.aplikasitodogambar.AddDataActivity
 import idn.fahru.aplikasitodogambar.databinding.ItemDataBinding
 import idn.fahru.aplikasitodogambar.model.ModelData
 import idn.fahru.aplikasitodogambar.recyclerview.viewholder.ItemDataVH
@@ -25,11 +27,15 @@ class ItemDataAdapter : RecyclerView.Adapter<ItemDataVH>() {
     }
 
     override fun onBindViewHolder(holder: ItemDataVH, position: Int) {
+        // TODO(buat variabel data berisi data yang sesuai posisi di recyclerview
         val data = listData[position]
         holder.bind(data)
 
         holder.itemView.setOnClickListener { view ->
-
+            // TODO(Buat intent ke AddDataActivity berisi data parcelable sebelumnya
+            val intent = Intent(view.context, AddDataActivity::class.java)
+            intent.putExtra("DATA", data)
+            view.context.startActivity(intent)
         }
     }
 

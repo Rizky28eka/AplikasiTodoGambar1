@@ -17,5 +17,13 @@ class ItemDataVH(private val binding: ItemDataBinding) : RecyclerView.ViewHolder
             .centerCrop()
             .placeholder(R.drawable.gambar_placeholder)
             .into(binding.imgProfile)
+
+        // TODO(Masukkan data lainnya seperti name, address, dan class ke dalam item recyclerview
+        binding.run {
+            txtNama.text = data.profile_name
+            txtKelas.text = data.profile_class
+            txtAlamat.text = data.profile_address
+        }
+
     }
 }
